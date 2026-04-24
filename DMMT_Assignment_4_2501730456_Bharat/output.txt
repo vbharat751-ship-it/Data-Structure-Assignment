@@ -1,0 +1,68 @@
+
+--- Task 1: Binary Search Tree ---
+
+Inserting: [50, 30, 70, 20, 40, 60, 80]
+Inorder after insertions: [20, 30, 40, 50, 60, 70, 80]
+
+Search 20: True
+Search 90: False
+
+Inserted 65. Inorder now: [20, 30, 40, 50, 60, 65, 70, 80]
+
+Deleting 20 (leaf node):
+  Inorder: [30, 40, 50, 60, 65, 70, 80]
+
+Deleting 60 (one child - has child 65):
+  Inorder: [30, 40, 50, 65, 70, 80]
+
+Deleting 30 (two children - has left 40, right subtree):
+  Inorder: [40, 50, 65, 70, 80]
+
+Deleting 50 (root node, two children):
+  Inorder: [40, 65, 70, 80]
+
+--- Task 2: Graph BFS and DFS ---
+
+  Adjacency List:
+    A -> B(w=2), C(w=4)
+    B -> D(w=7), E(w=3)
+    C -> E(w=1), F(w=8)
+    D -> F(w=5)
+    E -> D(w=2), F(w=6)
+    F -> None
+
+  BFS from A: A -> B -> C -> D -> E -> F
+  DFS from A: A -> B -> D -> F -> E -> C
+
+--- Task 3: Hash Table (Separate Chaining, size=5) ---
+
+Inserting keys: [10, 15, 20, 7, 12]
+  insert(10, 'ten') -> bucket[0]
+  insert(15, 'fifteen') -> bucket[0]
+  insert(20, 'twenty') -> bucket[0]
+  insert(7, 'seven') -> bucket[2]
+  insert(12, 'twelve') -> bucket[2]
+
+  Hash Table (size=5):
+    Bucket[0]: (10, ten) -> (15, fifteen) -> (20, twenty)
+    Bucket[1]: empty
+    Bucket[2]: (7, seven) -> (12, twelve)
+    Bucket[3]: empty
+    Bucket[4]: empty
+
+Retrieving keys:
+  get(10) = ten
+  get(7) = seven
+  get(12) = twelve
+
+Deleting key 15 (bucket[0], collides with 10 and 20):
+  Hash Table (size=5):
+    Bucket[0]: (10, ten) -> (20, twenty)
+    Bucket[1]: empty
+    Bucket[2]: (7, seven) -> (12, twelve)
+    Bucket[3]: empty
+    Bucket[4]: empty
+
+Get 15 after deletion: None
+
+All tasks done.
