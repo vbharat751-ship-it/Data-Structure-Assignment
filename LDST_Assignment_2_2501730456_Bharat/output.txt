@@ -1,0 +1,145 @@
+╔══════════════════════════════════════════════════════════╗
+║   Linear Data Structures Toolkit (LDST)                 ║
+║   ETCCDS202 | Unit 2 Assignment                         ║
+║   Roll No: 2501730189                                    ║
+╚══════════════════════════════════════════════════════════╝
+
+============================================================
+  TASK 1: Dynamic Array Simulation
+============================================================
+
+Initial state: []  (size=0, capacity=2)
+
+Appending 10 elements (initial capacity = 2):
+  append(1)  → [1]  (size=1, capacity=2)
+  append(2)  → [1, 2]  (size=2, capacity=2)
+  append(3)  [RESIZE] Capacity doubled → new capacity = 4
+  → [1, 2, 3]  (size=3, capacity=4)
+  append(4)  → [1, 2, 3, 4]  (size=4, capacity=4)
+  append(5)  [RESIZE] Capacity doubled → new capacity = 8
+  → [1, 2, 3, 4, 5]  (size=5, capacity=8)
+  append(6)  → [1, 2, 3, 4, 5, 6]  (size=6, capacity=8)
+  append(7)  → [1, 2, 3, 4, 5, 6, 7]  (size=7, capacity=8)
+  append(8)  → [1, 2, 3, 4, 5, 6, 7, 8]  (size=8, capacity=8)
+  append(9)  [RESIZE] Capacity doubled → new capacity = 16
+  → [1, 2, 3, 4, 5, 6, 7, 8, 9]  (size=9, capacity=16)
+  append(10)  → [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]  (size=10, capacity=16)
+
+Popping 3 elements:
+  pop() returned 10  → [1, 2, 3, 4, 5, 6, 7, 8, 9]  (size=9, capacity=16)
+  pop() returned 9  → [1, 2, 3, 4, 5, 6, 7, 8]  (size=8, capacity=16)
+  pop() returned 8  → [1, 2, 3, 4, 5, 6, 7]  (size=7, capacity=16)
+
+============================================================
+  TASK 2A: Singly Linked List
+============================================================
+
+Inserting 3 elements at beginning: 10, 20, 30
+  SLL: 10 → None
+  SLL: 20 → 10 → None
+  SLL: 30 → 20 → 10 → None
+
+Inserting 3 elements at end: 40, 50, 60
+  SLL: 30 → 20 → 10 → 40 → None
+  SLL: 30 → 20 → 10 → 40 → 50 → None
+  SLL: 30 → 20 → 10 → 40 → 50 → 60 → None
+
+Delete by value: 20
+  SLL: 30 → 10 → 40 → 50 → 60 → None
+
+Delete by value: 60 (tail)
+  SLL: 30 → 10 → 40 → 50 → None
+
+Delete by value: 99 (not found)
+  [DELETE] Value 99 not found in list.
+
+============================================================
+  TASK 2B: Doubly Linked List
+============================================================
+
+Building list: 10 → 20 → 30 → 40 → 50
+  DLL: None ↔ 10 ↔ 20 ↔ 30 ↔ 40 ↔ 50 ↔ None
+
+Insert 25 after node with value 20:
+  DLL: None ↔ 10 ↔ 20 ↔ 25 ↔ 30 ↔ 40 ↔ 50 ↔ None
+
+Insert 99 after node with value 50 (tail):
+  DLL: None ↔ 10 ↔ 20 ↔ 25 ↔ 30 ↔ 40 ↔ 50 ↔ 99 ↔ None
+
+Delete at position 1 (0-based → removes 20):
+  DLL: None ↔ 10 ↔ 25 ↔ 30 ↔ 40 ↔ 50 ↔ 99 ↔ None
+
+Delete at position 0 (head):
+  DLL: None ↔ 25 ↔ 30 ↔ 40 ↔ 50 ↔ 99 ↔ None
+
+Delete at last position (current size - 1 = 4):
+  DLL: None ↔ 25 ↔ 30 ↔ 40 ↔ 50 ↔ None
+
+============================================================
+  TASK 3A: Stack ADT (LIFO) using Singly Linked List
+============================================================
+
+Pushing: 10, 20, 30, 40
+  push(10) → Stack (top→bottom): 10
+  push(20) → Stack (top→bottom): 20 → 10
+  push(30) → Stack (top→bottom): 30 → 20 → 10
+  push(40) → Stack (top→bottom): 40 → 30 → 20 → 10
+
+  peek() = 40
+
+Popping 2 elements:
+  pop() returned 40  → Stack (top→bottom): 30 → 20 → 10
+  pop() returned 30  → Stack (top→bottom): 20 → 10
+
+  peek() = 20
+
+Popping remaining:
+  pop() returned 20
+  pop() returned 10
+
+Trying to pop from empty stack:
+  Exception caught → Stack underflow: pop from empty stack
+
+============================================================
+  TASK 3B: Queue ADT (FIFO) using Singly Linked List
+============================================================
+
+Enqueueing: A, B, C, D
+  enqueue(A) → Queue (front→rear): A
+  enqueue(B) → Queue (front→rear): A → B
+  enqueue(C) → Queue (front→rear): A → B → C
+  enqueue(D) → Queue (front→rear): A → B → C → D
+
+  front() = A
+
+Dequeueing 2 elements:
+  dequeue() returned A  → Queue (front→rear): B → C → D
+  dequeue() returned B  → Queue (front→rear): C → D
+
+  front() = C
+
+Dequeueing remaining:
+  dequeue() returned C
+  dequeue() returned D
+
+Trying to dequeue from empty queue:
+  Exception caught → Queue underflow: dequeue from empty queue
+
+============================================================
+  TASK 4: Balanced Parentheses Checker
+============================================================
+
+Expression           Expected     Got          Pass?
+-------------------------------------------------------
+  "([])"             Balanced     Balanced     ✓ PASS
+  "([)]"             Not Balanced Not Balanced ✓ PASS
+  "((("              Not Balanced Not Balanced ✓ PASS
+  ""  (empty)        Balanced     Balanced     ✓ PASS
+  "{[()]}"           Balanced     Balanced     ✓ PASS
+  "((()))"           Balanced     Balanced     ✓ PASS
+  "{[(])}"           Not Balanced Not Balanced ✓ PASS
+  ")"                Not Balanced Not Balanced ✓ PASS
+
+============================================================
+  All tasks completed successfully.
+============================================================
